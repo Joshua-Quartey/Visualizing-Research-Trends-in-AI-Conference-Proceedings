@@ -1,7 +1,7 @@
 import clean 
 
-def main():
-  raw_data_path = "../data/raw/2016_2024.csv"
+def main()->tuple[clean.pd.DataFrame]:
+  raw_data_path = "../data/raw/2016_2024_scopus.csv"
   raw_df = clean.pd.read_csv(raw_data_path)
 
   clean_df = clean.clean_missing_values(raw_df)

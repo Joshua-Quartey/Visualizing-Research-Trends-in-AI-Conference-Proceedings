@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 
 def clean_missing_values(data_df : pd.DataFrame)->pd.DataFrame:
     """
@@ -21,7 +20,7 @@ def clean_drop(data_df : pd.DataFrame)->pd.DataFrame:
             ], axis=1)
     data_df.drop_duplicates(inplace = True)
 
-return data_df
+    return data_df
 
 def types_conversion(data_df : pd.DataFrame)->pd.DataFrame:
     """
@@ -55,6 +54,8 @@ def reformat_values(data_df : pd.DataFrame)->pd.DataFrame:
     Reformat string values in select columns to extract meaningful 
     features for analysis
     """
+    global valid_countries, authors
+    
     # Extract country naems to "Countries" column
     a = data_df['Authors with affiliations'].str.extractall(r',\s([^,;]+)(?=;|$)')
     data_df["Countries"] = a.groupby(level=0).agg(', '.join)
